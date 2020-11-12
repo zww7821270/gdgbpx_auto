@@ -5,7 +5,7 @@
 最近在帮人挂广东省干部培训网络学院这个网站的视频，参考了一下网上别人的代码，自己也弄了一套，语言 **python**,需要python环境；
 
 ### 使用说明
-1. 拉代码，python环境建议直接安装anaconda，然后直接下载pycharm开发工具，打开代码后，提示什么包下面有红色波浪线要import，就import；import失败就打开settings-Python Interpreter-install(+号)手动引入
+1. 拉代码，python环境建议直接安装anaconda然后配置环境变量，然后直接下载pycharm开发工具，打开代码后，提示什么包下面有红色波浪线要import，就import；import失败就打开settings-Python Interpreter-install(+号)手动引入
 
    ![image-20201112092256978](images/image-20201112092256978.png)
 
