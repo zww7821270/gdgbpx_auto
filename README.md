@@ -7,7 +7,7 @@
 ### 使用说明
 1. 拉代码，python环境建议直接安装anaconda然后配置环境变量，然后直接下载pycharm开发工具，打开代码后，提示什么包下面有红色波浪线要import，就import；import失败就打开settings-Python Interpreter-install(+号)手动引入
 
-   ![image-20201112092256978](images/image-20201112092256978.png)
+   ![image-20201112092256978](/images/image-20201112092256978.png)
 
 2. 需要下载你当前电脑chrome谷歌浏览器对应版本的驱动，可查看当前浏览器，在网址http://npm.taobao.org/mirrors/chromedriver/  下载对应的驱动
     将下载好的驱动解压到对应chrome的安装目录路径，如C:\Program Files (x86)\Google\Chrome\Application下即可
