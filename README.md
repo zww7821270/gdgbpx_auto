@@ -10,7 +10,7 @@
    ![image-20201112092256978](images/image-20201112092256978.png)
 
 2. 需要下载你当前电脑chrome谷歌浏览器对应版本的驱动，可查看当前浏览器，在网址http://npm.taobao.org/mirrors/chromedriver/  下载对应的驱动
-    将下载好的驱动解压到对应chrome的安装目录路径，如C:\Program Files (x86)\Google\Chrome\Application下即可
+    将下载好的驱动解压到对应chrome的安装目录路径，windows放在C:\Program Files (x86)\Google\Chrome\Application下，mac放在/usr/local/bin/下
 
 3. 修改代码中用户名密码，在pycharm运行
 ```
