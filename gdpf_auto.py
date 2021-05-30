@@ -13,7 +13,7 @@ def switch2frame(par):
 
 def main():
     # 输入账号
-    username = "15876540864"
+    username = ""
     # 输入密码
     passwd = "xfks1234"
     login_url = 'http://xfks-study.gdsf.gov.cn/'
