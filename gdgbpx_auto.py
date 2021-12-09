@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 import pyautogui
 import time
 import math
@@ -24,7 +25,7 @@ def run_main(video_unstudy_num, browser):
                 browser.switch_to.window(handle)
                 browser.implicitly_wait(10)
                 # time.sleep(10)
-                # elem = browser.find_element_by_class_name("introjs-button")
+                # elem = browser.find_element(By.CLASS_NAME,"introjs-button")
                 # elem = browser.find_element_by_link_text('好的，我知道了')
                 # elem.click()
                 time.sleep(2)
@@ -36,7 +37,7 @@ def run_main(video_unstudy_num, browser):
                 print('viewPaused：' + str(view_paused_status))
                 # false 点击了播放  true 点击了暂停
                 if view_paused_status:
-                    elem = browser.find_element_by_class_name("vjs-play-control")
+                    elem = browser.find_element(By.CLASS_NAME,"vjs-play-control")
                     elem.click()
                 time.sleep(5)
                 # 获取视频播放时长?
@@ -51,7 +52,7 @@ def run_main(video_unstudy_num, browser):
                 if math.ceil(view_current_time) >= math.ceil(view_time):
                     print('1111')
                     browser.switch_to.default_content()
-                    elem = browser.find_element_by_id('btnexit')
+                    elem = browser.find_element(By.ID,'btnexit')
                     elem.click()
                     # 关闭视频网站页面 进入pre_window_handle页面
                     browser.switch_to.window(pre_window_handle)
@@ -64,19 +65,24 @@ def run_main(video_unstudy_num, browser):
                     # print("local--该目录下还有{}个视频未学习……".format(video_unstudy_num))
                     run_main(video_unstudy_num, browser)
                 else:
+                    print('wait...')
                     time.sleep(math.ceil(view_time) - math.ceil(view_current_time))
                     browser.switch_to.default_content()
+                    print('wait 111...')
                     elem = browser.find_element_by_id('btnexit')
+                    print('wait 222...')
                     elem.click()
                     # 关闭视频网站页面 进入pre_window_handle页面
                     browser.switch_to.window(pre_window_handle)
                     browser.refresh()
+                    print('wait 333...')
                     browser.implicitly_wait(10)
                     switch2frame(browser)
+                    print('wait 444...')
                     js_list = 'return document.getElementsByClassName("courseware-list-reed").length;'
                     video_unstudy_num = browser.execute_script(js_list)
                     time.sleep(3)
-                    # print("local--该目录下还有{}个视频未学习……".format(video_unstudy_num))
+                    print("local--该目录下还有{}个视频未学习……".format(video_unstudy_num))
                     run_main(video_unstudy_num, browser)
     else:
         print("该目录下还有视频已学习完毕……")
@@ -90,51 +96,64 @@ def main():
     login_url = 'https://gbpx.gd.gov.cn/gdceportal/index.aspx'
     option = webdriver.ChromeOptions()
     option.add_argument('--mute-audio')
+    print("111……")
     browser = webdriver.Chrome(options=option)
+    print("222……")
     browser.get(login_url)
+    print("333……")
     browser.implicitly_wait(10)
+    print("444……")
     # 窗口最大化
     browser.maximize_window()
-    elem = browser.find_element_by_xpath('//*[@id="pnlLogin"]/div[1]/div[2]')
+    #elem = browser.find_element(By.XPATH, '//*[@id="pnlLogin"]/div[1]/div[2]')
+    elem = browser.find_element(By.XPATH,'//*[@id="pnlLogin"]/div[1]/div[2]')
     elem.click()
     time.sleep(1)
-    elems = browser.find_elements_by_class_name("nav-items")
-    elems[0].click();
+    elems = browser.find_element(By.CLASS_NAME,"nav-items")
+    elems.click();
+    #elems[0].click();
     time.sleep(1)
-    elem = browser.find_element_by_id("txtLoginName")
+    elem = browser.find_element(By.ID,"txtLoginName")
     elem.clear()
     elem.send_keys(username)
     time.sleep(1)
-    elem = browser.find_element_by_id("txtPassword")
+    elem = browser.find_element(By.ID,"txtPassword")
     elem.clear()
     elem.send_keys(passwd)
     time.sleep(1)
     # 验证码
     code_num = pyautogui.prompt("请输入验证码:")
-    elem = browser.find_element_by_id("txtValid")
+    elem = browser.find_element(By.ID,"txtValid")
     elem.clear()
     elem.send_keys(code_num)
-    elem = browser.find_element_by_xpath('//*[@id="user-login-form"]/div[2]/input[1]')
+    elem = browser.find_element(By.XPATH,'//*[@id="user-login-form"]/div[2]/input[1]')
     elem.click()
     time.sleep(3)
-    elems = browser.find_elements_by_class_name("is-round");
+    #elems = browser.find_element(By.CLASS_NAME,"is-round");
 
-    elems[0].click();
+    #print(len(elems))
+    print("5555……")
+    #elems[0].click();
     time.sleep(3)
-    elem = browser.find_element_by_id('btnStudy')
+    elem = browser.find_element(By.ID,'btnStudy')
     elem.click()
     time.sleep(3)
+    print("6666……")
     # browser.switch_to_frame('secondIframe')
     # browser.switch_to.frame('secondIframe')
     # browser.switch_to.frame('thirdIframe')
     # browser.switch_to.frame('dataMainIframe')
     switch2frame(browser)
+    print("777……")
     time.sleep(1)
 
     js_list = 'return document.getElementsByClassName("courseware-list-reed").length;'
+    print("888……")
     video_unstudy_num = browser.execute_script(js_list)
+    print("999……")
     time.sleep(3)
     run_main(video_unstudy_num, browser)
+    print("101010……")
     browser.close()
     print("end......")
 
