@@ -12,14 +12,14 @@ def switch2frame(par):
 
 
 def main():
-    # 输入账号
-    username = ""
+    # 输入账号-手机号码
+    username = "*********"
     # 输入密码
     passwd = "xfks1234"
     login_url = 'http://xfks-study.gdsf.gov.cn/'
-    option = webdriver.ChromeOptions()
-    option.add_argument('--mute-audio')
-    browser = webdriver.Chrome(options=option)
+    #option = webdriver.firefox()
+    #option.add_argument('--mute-audio')
+    browser = webdriver.Firefox()
     browser.get(login_url)
     browser.implicitly_wait(10)
     # 窗口最大化
@@ -42,7 +42,7 @@ def main():
     elem.click()
     time.sleep(5)
     #switch2frame(browser)
-    studyKind = ["a_a_course_dgdz", "a_a_xjpfzsx"]
+    studyKind = ["a_a_a_xjpfzsx", "a_a_b_xfflfg"]
     for kind in studyKind:
         run_kind(browser, kind)
 
@@ -98,8 +98,9 @@ def run_chapter(browser):
         elem = browser.find_element_by_id('chapter-1205').find_element_by_xpath('//ul[1]/li['+str(cat + 1)+']/table[1]')
         elem.click()
         time.sleep(1)
-        js_list = 'saveRecord(1);'
+        js_list = 'javascript:saveRecord(1);'
         browser.execute_script(js_list)
+        time.sleep(1)
         cat = cat + 1
         btn = browser.find_element_by_tag_name("button")
         btn.click()
